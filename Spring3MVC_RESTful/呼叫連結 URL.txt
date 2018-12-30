@@ -1,0 +1,15 @@
+
+
+@PathVariable 以 Path 方式取得
+IronMan
+
+http://localhost:8080/Spring3MVC_RESTful/movie01/IronMan
+
+
+
+※ 參數帶入的方式 @RequestParam 
+   movieName 和 director 
+http://localhost:8080/Spring3MVC_RESTful/movie02?movieName=Iron Man&director=kevin
+
+※ director 沒有寫時，則帶入defaultValue 預設值
+http://localhost:8080/Spring3MVC_RESTful/movie02?movieName=Iron Man

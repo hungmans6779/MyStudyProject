@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+  
+  
+
+
+  <!-- 
+    設定 Set 屬性 <set>
+    <list> 設定 java.util.Set 類型的屬性。Set 屬性中可設定任意物件。
+    如果是 Java 物件，則使用 <ref/> 指定，或者使用 <bean> 定義新實例，如果是普通類型如 String、int double 等，直接用字串即可。 
+  -->
+  <bean id="setImpl_str" class="com.framework.spring.propertySet.SomeSetStrImpl" >
+    <property name="setStr" >
+      <set>
+        <value>11111</value>
+        <value>22222</value>
+        <value>33333</value>
+      </set>
+    </property>
+  </bean>
+
+
+
+
+
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+    <property name="driverClassName" ><value>com.mysql.jdbc.Driver</value></property>  
+    <property name="url"                value="jdbc:mysql://localhost:3306/spring2.5_core?characterEncoding=UTF-8" />
+    <property name="username"           value="root"      />
+    <property name="password"           value="19786779"  />
+    <property name="defaultAutoCommit"  value="false"     />
+    <property name="maxActive"          value="100"       />
+  </bean>
+  
+  <bean id="setImpl_obj" class="com.framework.spring.propertySet.SomeSetObjImpl" >
+    <property name="setObj" >
+      <set>
+        <ref bean="dataSource" />
+      </set>
+    </property>
+  </bean>
+
+
+
+
+
+
+</beans>

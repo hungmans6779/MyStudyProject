@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="XFireDemoWSDLClient"
+  id="myeclipse.1377504342687"
+  context-root="/XFireDemoWSDLClient"
+  j2ee-spec="5.0"
+  archive="XFireDemoWSDLClient.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

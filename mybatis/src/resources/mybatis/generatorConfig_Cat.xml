@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<!--  
+   參考文件來源
+   http://www.360doc.com/resaveArt.aspx?articleid=90117492&isreg=1 
+
+   /WEB-INF/lib package 下執行
+   java -jar mybatis-generator-core-1.3.2.jar -configfile ../../../src/resources/mybatis/mybatis-generator_Pet.xml -overwrite   
+   
+   java -jar mybatis-generator-core-1.3.2.jar -configfile ../../../src/resources/mybatis/generatorConfig_Cat.xml -overwrite   
+    
+   java -jar mybatis-generator-core-1.3.0.jar -configfile ../../../src/resources/mybatis/generatorConfig_Cat.xml -overwrite   
+      
+-->
+
+
+<generatorConfiguration>
+
+  <context id="context1" >
+  
+  
+    <!-- jdbcConnection是指定的jdbc的连接信息 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                    connectionURL="jdbc:mysql://localhost:3306/spring2_mvc" 
+                    userId="root" 
+                    password="19786779" >
+    </jdbcConnection>
+
+
+
+    <!-- javaModelGenerator是模型的生成信息，这里将指定这些Java model类的生成路径  -->
+    <javaModelGenerator targetPackage="mybatis.pojo" targetProject="mybatis" >
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings"       value="true" />
+    </javaModelGenerator>
+
+
+
+    <!--  sqlMapGenerator是mybatis 的sqlMapper XML文件的生成信息，包括生成路径 -->
+    <sqlMapGenerator targetPackage="mybatis.schema" targetProject="mybatis" >
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+   
+    <!-- javaClientGenerator是应用接口的生成信息 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="mybatis.dao" targetProject="mybatis" >
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+  
+   
+    <!--  table是用户指定的被生成相关信息的表，它必须在指定的jdbc连接中已经被建立  -->
+    <table tableName="tb_cat" domainObjectName="Cat" />
+  
+  
+  </context>
+  
+</generatorConfiguration>

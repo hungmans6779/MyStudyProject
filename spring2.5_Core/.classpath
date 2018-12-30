@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-beans.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-context.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-core.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-attributes-api.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-attributes-compiler.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_AOP"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_PERSISTENCE_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.springframework.MYECLIPSE_SPRING25_PERSISTENCE_JDBC"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

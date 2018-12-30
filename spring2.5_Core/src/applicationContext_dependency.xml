@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+  
+  
+  
+  
+  <!--  
+    相依檢查 dependency
+    
+    有時候某些 Bean 的屬性設定有錯誤，例如某個屬性沒有設定。 
+    這種錯誤在程式啟動的時候不會有任何例外表現，會一直潛伏到 Spring 呼叫該 Bean 時才會被發現。
+    為了防止這種情況，Spring 提供相依檢查，在程式啟動的時候檢查相依設定。
+    如果有錯誤，啟動時就會拋出例外，以便發現設定錯誤。
+    
+    
+    dependency 屬性取值範圍
+    dependency 屬性有很多種取值，分別應付不同的情況。但是需要注意， dependency 相依檢查是很生硬的，
+    例如設定為 object ，將會檢查所有的 Java 物件屬性。只要有一個屬性沒有設定，就會拋出例外，即某屬性明明不需要設定，
+    但是沒有辦法避免 dependency 檢查，容易造成"一竿子全打死"的現象。 
+ 
+    (1) no 或者 default：不做任何檢查。
+
+    (2) simple：僅檢查基本類型、集合屬性。如果沒有屬性設定，會拋出例外。
+
+    (3) object；僅檢查 Java 物件屬性。如果有屬性沒有設定，會拋出例外。
+
+    (4) all：檢查所有屬性，等同於 simple 與 object 的聯集。   
+  --> 
+
+ 
+ 
+   
+  <bean id="daoImpl" class="com.framework.spring.autowire.dao.DaoImpl" />
+
+
+
+  <!-- byName：根據名稱自動裝配，如果 Bean 中有個名為 dateSource 的屬性，Spring 會把 id 為 dataSource 的屬性設定到該 Bean 中。  -->
+  <bean id="beanAImpl" class="com.framework.spring.autowire.entity.MyFactoryBeanA" autowire="byName" dependency-check="simple" />
+  
+  
+  <!-- byType：根據類型自動裝配，如果 Bean 中有個 DataSource 類型的屬性，Spring 會把 DataSource 類型的 Bean 設定到該 Bean 中。  -->
+  <bean id="beanBImpl" class="com.framework.spring.autowire.entity.MyFactoryBeanB" autowire="byType"  dependency-check="all" />
+  
+  
+  
+  
+ 
+   
+</beans>

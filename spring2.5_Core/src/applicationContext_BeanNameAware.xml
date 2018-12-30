@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+
+
+
+
+
+
+  <!-- 
+      BeanNameAware 介面獲得 Bean 的 id
+      
+      BeanNameAware 介面明  JavaBean 知道自己在設定檔中的id 。實現 BeanNameAware 介面，實現方法過為 setBeanName() 方法，
+      初始化該物件後 Spring 就會執行該回檔方法，將 id 設定進來。Bean 中設定一個寫程式，接收 id 名稱即可。
+  -->
+   
+   <bean id="beanNameAwareImpl" class="com.framework.spring.beanNameAware.WhatTheBeanNameAware"  />
+ 
+ 
+  
+</beans>

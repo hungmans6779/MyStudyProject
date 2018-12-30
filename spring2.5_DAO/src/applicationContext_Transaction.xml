@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+        Spring 的DAO 模組提供了對JDBC、Hibernate、JDO 等DAO 層支援。本節先介紹 DAO 模組對JDBC技術的支援。
+    DAO 模組相依於commons-pools.jar、commons-collections.jar、MyEclipse 附帶的Spring DAO 類別函式庫沒有這兩個類別函式庫，需要自己增加。 
+
+        傳統的 JDBC 程式中，總避免不了與 Connection 、Statement、PreparedStatment、ResultSet、SQLException 等打交道，
+    還要注意開啟連接後要釋放連接等鎖碎的問題。 
+    SpringFramework 對 JDBC 進行封裝，完全拋棄了 JDBC API。
+    資料庫連接、交易等也交給了 Spring 打點，開發者只需要使用封裝好的 JdbcTemplete 執行 SQL 敘述，然後得到需要的結果。 
+  -->
+
+
+
+  <!-- 資料庫連線設定 -->
+  <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close" >
+    <property name="driverClassName"    value="com.mysql.jdbc.Driver"                                             />
+    <property name="url"                value="jdbc:mysql://localhost:3306/spring2_dao?characterEncoding=UTF-8"   />
+    <property name="username"           value="root"                                                              />
+    <property name="password"           value="19786779"                                                          />
+    <property name="defaultAutoCommit"  value="true"                                                              />
+    <property name="maxActive"          value="100"                                                               />   
+  </bean>
+  
+  
+  <!-- 
+    需要設定一個資料來源，並將資料來源設定到 personDao 中。因為 JdbcTemplate 需要用到資料來源。 
+    PersonDaoImpl 還增加了一個非介面的方法 initDataBase()，用於產生資料表的結構。需要將initDatabase 設定到 Spring 中。
+  -->
+  <bean id="personDAOId" class="com.framework.spring.dao.impl.PersonDAOImpl" depends-on="ds" init-method="initDataBase" >
+    <property name="dataSource" >
+      <ref local="ds" />
+    </property>
+  </bean>
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  <!-- JDBC 交易管理 -->
+  <bean id="jdbcTransactionManagerId" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+    <property name="dataSource" >
+      <ref local="ds" />
+    </property>
+  </bean>
+  
+  
+  <!-- 為所有的方法設定交易 -->
+  <bean id="transactionAttributeSourceId" class="org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource" >
+    <property name="properties" >
+      <props>
+        <prop key="*" >PROPAGATION_REQUIRED</prop> <!-- 交易類型：所有方法都加入交易 -->
+      </props>
+    </property>
+  </bean> 
+  
+  
+  <!-- TransactionRun  -->
+  <bean id="transactionRunId" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" >
+    
+    <!-- JDBC 交易管理 -->
+    <property name="transactionManager" >
+      <ref local="jdbcTransactionManagerId" />
+    </property>
+    
+    <!-- 為所有的方法設定交易 -->
+    <property name="transactionAttributeSource">
+      <ref local="transactionAttributeSourceId" />
+    </property>
+    
+    <!-- 被管理的物件，匿名Bean -->
+    <property name="target" >
+      <bean class="com.framework.spring.dao.transaction.TransactionRun" >
+        <property name="personDAO" >
+          <ref local="personDAOId" />
+        </property>
+      </bean>
+    </property>
+    
+  </bean>
+  
+  
+  
+  
+  
+  
+</beans>

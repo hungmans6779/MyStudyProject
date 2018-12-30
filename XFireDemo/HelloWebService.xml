@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xfir="http://xfire.webservice.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xfir:sayHello>
+         <xfir:in0>kevin</xfir:in0>
+      </xfir:sayHello>
+   </soapenv:Body>
+</soapenv:Envelope>

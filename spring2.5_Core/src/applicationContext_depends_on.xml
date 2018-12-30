@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+  
+  <!-- 
+    設定 depends-on 相依物件
+    
+    Spring 會預設按照設定檔裡 Bean 設定的先後順序產生實體 Bean 。但有時候在產生實體 b 物件之前需要先產生實體後面的 a 物件。
+    這時候可以使用 depends-on ，強制先 B 物件。
+     
+    這時，在產生實體 b 物件時會檢查 a 是否存在，如果不存在，先產生實體 a 物件。 
+  -->
+  
+  <bean id="a" class="com.framework.spring.depends_on.BeanA" />
+  
+  <!-- 載入 b 物件前要先載入 a 物件 -->
+  <bean id="b" class="com.framework.spring.depends_on.BeanB"  depends-on="a" />
+   
+   
+   
+</beans>

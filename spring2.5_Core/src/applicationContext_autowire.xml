@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+  <!-- 
+    屬性自動裝配 autowire
+    
+    如果每個屬性者使用 <ref> 設定，一個大項目的 Spring 設定檔會十分龐大。為此 Spring 提供了自動裝配機制，
+    不用設定 <ref> 而根據某種規則自動設定屬性。
+    
+    可以透過 <bean> 的 autowire 屬性設定自動裝配規則。使用 autowire 後，不需要再用 <property name="" value="" /> 
+    顯示地設定該 Bean 的屬性、相依關係。Spring 會根據反射，自動尋找符合條件的屬性，設定到該 Bean 屬性上。
+    如果 autowire 設定為 byType ，將會按照屬性的類型自動比對。
+    
+    
+    <bean> 的 autowire 屬性取值
+    
+    (1) no 或者 default： 預設值，不自動裝配任何屬性。所有屬性都要使用 <ref> 或者 <idref> 設定，在大的佈署環境中推薦使用預設值，
+                          使用 <ref> 或者 <idref>  顯示設定屬性會使相依性更加明確。
+    
+    (2) byName：根據名稱自動裝配，如果 Bean 中有個名為 daoImpl 的屬性，Spring 會把 id 為 daoImpl 的屬性設定到該 Bean 中。
+    
+    (3) byType：根據類型自動裝配，如果 Bean 中有個 DaoImpl 類型的屬性，Spring 會把 DaoImpl 類型的 Bean 設定到該 Bean 中。
+                注意如果有多個 DaoImpl 類型的 Bean，會拋出例外。
+    
+    (4) constructor：根據類型自動裝配建構函數。如果沒有或者有多個類型比對的 Bean ，都會拋出例外。
+    
+    (5) autodetect： 自動探測。如果建構函數帶有參數，則同 constructor ，否則同 byType。
+    
+    
+    ※ 如果顯示地定義了 <property>  或者 <constructor-arg>，會覆蓋預設裝配。
+       自動裝配一般與下面的相依檢查連用。
+  -->
+  
+  
+  <bean id="daoImpl" class="com.framework.spring.autowire.dao.DaoImpl" />
+
+
+
+  <!-- byName：根據名稱自動裝配，如果 Bean 中有個名為 dateSource 的屬性，Spring 會把 id 為 dataSource 的屬性設定到該 Bean 中。  -->
+  <bean id="beanAImpl" class="com.framework.spring.autowire.entity.MyFactoryBeanA" autowire="byName" />
+  
+  
+  <!-- byType：根據類型自動裝配，如果 Bean 中有個 DataSource 類型的屬性，Spring 會把 DataSource 類型的 Bean 設定到該 Bean 中。  -->
+  <bean id="beanBImpl" class="com.framework.spring.autowire.entity.MyFactoryBeanB" autowire="byType"/>
+  
+  
+  
+</beans>

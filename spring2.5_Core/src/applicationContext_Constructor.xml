@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+
+  <!-- 建構函數 <constructor-arg > -->
+  <!-- 
+      等同於
+      public class MyBean{
+        private AnotherBean bean01;
+        private YetAnotherBean bean02;
+        private int i;
+        
+        public MyBean(AnotherBean anotherBean,YetAnotherBean yetAnotherBean,int i){
+          this.bean01 = anotherBean;
+          this.bean02 =  yetAnotherBean;
+          this.i = i;
+        }
+      }
+  
+  -->
+  <bean id="beanImpl01"  class="com.framework.spring.constructor.MyBean">
+    <constructor-arg><bean class="com.framework.spring.constructor.AnotherBean" /></constructor-arg>
+    <constructor-arg><bean class="com.framework.spring.constructor.YetAnotherBean" /></constructor-arg>
+    <constructor-arg><value>168</value></constructor-arg>
+  </bean>
+
+</beans>

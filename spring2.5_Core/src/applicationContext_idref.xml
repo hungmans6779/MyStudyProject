@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+
+  <bean id="daoImpl" class="com.framework.spring.dao.DaoImpl" />
+
+
+
+
+
+
+
+  <!-- 
+    方式一：  
+    設定 <ref> 的屬性
+    local：只能使用本設定檔中的 bean。
+    parent：只能使用父設定檔中的 bean。
+    bean:沒有任何限制。
+  -->
+  <bean id="serviceImpl_1" class="com.framework.spring.service.ServiceImpl" >
+    <property name="dao" >
+      <ref bean="daoImpl" />
+    </property>
+  </bean>
+
+
+
+
+
+
+
+  <!-- 
+    方式二： 
+  
+    <idref> 與 <ref> 的區別
+    <idref> 與 <ref> 的作用是一樣的，都是設定 Java 物件的。 <idref>的用也與 <ref> 基本相同，
+    不同的是，<idref>只有 bean 及 local 屬性，沒有 parent 屬性。
+    
+    
+    Spring 載入 XML 設定檔時，會檢查 <idref> 設定的 Bean 存在不存在。而<ref> 只會在第一次呼叫時才會檢查。
+    
+    換句話說，如果 Bean 不存在，
+    <idref> 能在啟動程式的時候就拋出錯誤，
+    而<ref> 只會在執行中拋出錯誤。
+  -->
+  <bean id="serviceImpl_2" class="com.framework.spring.service.ServiceImpl" >
+    <property name="dao" >
+      <ref bean="daoImpl" />
+    </property>
+  </bean>
+
+
+  
+  
+
+
+
+</beans>

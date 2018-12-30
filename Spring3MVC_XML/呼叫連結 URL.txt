@@ -1,0 +1,1 @@
+http://localhost:8080/Spring3MVC_XML/rest/coffee/kevin

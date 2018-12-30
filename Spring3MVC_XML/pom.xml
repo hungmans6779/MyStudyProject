@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ 
+ 
+ 
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!--  
+     團體，公司，小組，組織，項目，或者其它團體。
+     團體標識的約定是，它以創建這個項目的組織名稱的逆向域名(reverse domain name)開頭  
+  -->
+  <groupId>com.mkyong.common</groupId>
+  
+  <!-- 在 groupId 下的表示一個單獨項目的唯一標識符。 -->
+  <artifactId>Spring3MVC_XML</artifactId>
+  
+  <!-- 一個項目的特定版本 -->
+  <version>1.0-SNAPSHOT</version>
+  
+  <!-- 項目的類型，默認是jar，描述了項目打包後的輸出。類型為jar的項目產生一個 JAR文件，類型為war的項目產生一個web應用。 -->
+  <packaging>war</packaging>
+  
+  
+  
+  
+  <!-- name、url 是 POM 提供的描述性元素，它們給人提供可閱讀的名字，將一個項目關聯到了項目 WEB 站點  -->
+  <name>Spring3MVC_XML Maven Webapp</name>
+  
+  <url>http://maven.apache.org</url>
+
+
+
+
+
+
+
+  <properties>
+    <spring.version>3.0.5.RELEASE</spring.version>
+  </properties>
+
+
+  <dependencies>
+
+    <!-- Spring 3 dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+
+    <!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-oxm</artifactId> 
+      <version>${spring.version}</version> </dependency> -->
+    <!-- <dependency> <groupId>org.springframework.ws</groupId> <artifactId>spring-oxm</artifactId> 
+      <version>1.5.8</version> </dependency> -->
+
+
+    <!-- for compile only, your container should have this -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+
+
+
+
+
+
+
+
+
+  <build>
+
+    <finalName>Spring3MVC_XML</finalName>
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+
+
+
+
+
+</project>

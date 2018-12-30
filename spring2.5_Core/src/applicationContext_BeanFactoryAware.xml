@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+
+
+
+
+
+
+  <!--
+      BeanFactoryAware 介面獲得 BeanFactory
+      
+      BeanFactoryAware 介面明JavaBean 知道哪個BeanFactory 產生實體了自己。
+      BeanFactoryAware 介面中有setBeanFactory 的回檔方法，初始化該物件後，會回檔該方法，將BeanFactory 傳遞進來。
+  
+      實現了BeanFactoryAware介面的JavaBean能夠獲得BeanFactory，從BeanFactory 中能夠獲得到該BeanFactory中設定的其他JavaBean。
+       Spring不推薦這樣做，因為這樣會與Spring耦合。獲得其他JavaBean一般透過設定getter、setter方法，用相依植入實現。
+  -->
+  <bean id="a" class="com.framework.spring.beanFactoryAware.A" />
+  <bean id="b" class="com.framework.spring.beanFactoryAware.B"  scope="prototype"  />
+ 
+ 
+ 
+  <!-- 額外測試用 -->
+  <bean id="c" class="com.framework.spring.beanFactoryAware.C" />
+  
+</beans>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+    
+<!-- 
+  XML 配置文件包含对 MyBatis 系统的核心设置,包含获取数据库连接实例的数据源和 决定事务范围和控制的事务管理器。
+  关于 XML 配置文件的详细内容可以在文档后面找到, 这里给出一个简单的示例: 
+  
+  參考文件：http://www.mybatis.org/core/zh/configuration.html
+  
+-->   
+<configuration>  
+
+  <!-- 
+     environments
+     參考文件： 
+     http://www.mybatis.org/core/zh/configuration.html#environments
+     
+     MyBatis 可以配置多种环境。这会帮助你将 SQL 映射应用于多种数据库之中。例如, 你也许为开发要设置不同的配置, 测试和生产环境。 
+     或者你可能有多种生产级数据库却共享 相同的模式,所以你会想对不同数据库使用相同的 SQL 映射。这种用例是很多的。
+     一个很重要的问题要记得:你可以配置多种环境,但你只能为每个 SqlSessionFactory 实例选择一个。
+     所以,如果你想连接两个数据库,你需要创建两个 SqlSessionFactory 实例,每个数据库 对应一个。而如果是三个数据库,你就需要三个实例,以此类推。记忆起来很简单:
+     每个数据库对应一个 SqlSessionFactory
+  
+     默认的环境 ID(比如:default=”development”)。
+     每个 environment 元素定义的环境 ID(比如:id=”development”)。
+     事务管理器的配置(比如:type=”JDBC”)。
+     数据源的配置(比如:type=”POOLED”)。
+     
+     
+     transactionManager
+     在 MyBatis 中有两种事务管理器类型(也就是 type=”[JDBC|MANAGED]”):
+     JDBC – 这个配置直接简单使用了 JDBC 的提交和回滚设置。 它依赖于从数据源得 到的连接来管理事务范围。
+     MANAGED – 这个配置几乎没做什么。它从来不提交或回滚一个连接。而它会让容器来管理事务的整个生命周期(比如 Spring 或 JEE 应用服务器的上下文) 默认情况下它会关闭连接。 
+     然而一些容器并不希望这样, 因此如果你需要从连接中停止它,将 closeConnection 属性设置为 false。
+     例如：
+     <transactionManager type="MANAGED">
+        <property name="closeConnection" value="false"/>
+     </transactionManager>
+    
+  -->
+  
+  <environments default="development01" >  
+    
+    <environment id="development01" >  
+  
+      <transactionManager type="JDBC" />  
+  
+      <dataSource type="POOLED" >  
+        <property name="driver"    value="com.mysql.jdbc.Driver"                    />  
+        <property name="url"       value="jdbc:mysql://localhost:3306/spring2_mvc"  />  
+        <property name="username"  value="root"                                     />  
+        <property name="password"  value="19786779"                                 />  
+      </dataSource>  
+  
+    </environment>  
+    
+  </environments>  
+  
+  
+  
+  <mappers>  
+    <mapper resource="com/schema/CatMapper.xml" />  
+  </mappers>  
+  
+    
+</configuration> 

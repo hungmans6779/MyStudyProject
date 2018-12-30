@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+    <property name="driverClassName" ><value>com.mysql.jdbc.Driver</value></property>  
+    <property name="url"                value="jdbc:mysql://localhost:3306/spring2.5_core?characterEncoding=UTF-8" />
+    <property name="username"           value="root"      />
+    <property name="password"           value="19786779"  />
+    <property name="defaultAutoCommit"  value="false"     />
+    <property name="maxActive"          value="100"       />
+  </bean>
+  
+  
+
+
+  <!-- 
+    設定 Map 屬性 <map>
+    <map> 設定 java.util.Map 類型的屬性。<entry> 設定 Map 裡的元素，key 指定索引， value 指定值 。
+    如果是 Java 物件，則使用 <ref/> 指定，或者使用 <bean> 定義新實例，如果 key 為物件，使用 key-ref 屬性。 
+  -->
+  <bean id="mapImpl_obj" class="com.framework.spring.propertyMap.SomeMapObjImpl" >
+    <property name="mapObj" >
+      <map>
+        <entry key="key_str_1">
+          <value>value_1</value>
+        </entry>
+        <entry key="key_str_2" value="value_2" />
+        <entry key="key_obj_1" >
+          <ref bean="dataSource" />
+        </entry>
+      </map>
+    </property>
+  </bean>
+
+
+
+
+</beans>

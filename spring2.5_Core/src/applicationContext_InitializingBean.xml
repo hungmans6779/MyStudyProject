@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- 
+     Core 模組是 Spring 最核心、最基本的模組，實現載入設定檔、管理、初始化 Bean 等功能。
+     Spring 設定檔中可以設定各種各樣建構函數的類別，不過最常見的還是使用不帶參數的建構函數。
+     Spring 的一些設定(例如：資料庫設定)也可以拿到 properties 中。    
+  -->
+  
+  
+  
+  
+  <!--
+    InitializingBean 介面執行初始化方法
+      
+    實現了InitializingBean 介面的Java Bean會在產生實體後、所有屬性被設定後呼叫初始化方法。
+    但使用該介面會與Spring程式碼發生耦合，因此不建議使用。
+  -->
+  <bean id="initializingBean01" class="com.framework.spring.initializingBean.InitializingBean01" />
+  
+  
+  
+  <bean id="initializingBean02" class="com.framework.spring.initializingBean.InitializingBean02" init-method="afterPropertiesSet" />
+   
+  
+
+
+</beans>

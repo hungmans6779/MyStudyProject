@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+  <!-- DAO 物件 -->
+  <bean id="daoImpl" class="com.framework.spring.dao.DaoImpl" />
+  
+  
+  <!-- Service 物件 -->
+  <bean id="serviceImpl" class="com.framework.spring.service.ServiceImpl" >
+    <property name="dao" ref="daoImpl" />   <!-- 設定 DAO 屬性 -->
+  </bean>
+
+
+
+
+
+
+
+
+
+
+  <!-- 攔截器物件：在某些方法前執行的攔截器  -->
+  <bean id="methodBeforeAdviceImpl" class="com.framework.spring.interceptor.MethodBeforeAdviceImpl" />
+  
+       
+  <!-- 設定攔截器。用的是 Spring 的元件 --> 
+  <bean id="theAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor" >
+  
+    <property name="advice" >
+      <ref local="methodBeforeAdviceImpl" />   <!-- 攔截器物件 -->
+    </property>
+    
+    <property name="mappedName" value="*" />   <!-- 攔截所有的方法 -->
+  </bean>
+        
+        
+  <!-- 代理類別 Spring 的元件  -->   
+  <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean" >
+    
+    <!-- 攔截器 --> 
+    <property name="interceptorNames" value="theAdvisor" />
+     
+    
+    <!-- 被攔截器的物件 -->
+    <property name="target" >  
+      <ref local="serviceImpl" />
+    </property>
+  
+  </bean>
+      
+       
+       
+       
+       
+       
+       
+
+</beans>

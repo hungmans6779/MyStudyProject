@@ -1,0 +1,106 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+  Copyright 2004 Sun Microsystems, Inc. All rights reserved.
+-->
+
+
+<project basedir="." default="compile" >
+  
+	
+  <description>
+    This sample application demonstrates how to use the ObjectFactory 
+    class to create a Java content tree from scratch and marshal it to 
+    XML data. It also demonstrates how to add content to a JAXB List 
+    property.
+  </description>
+  
+ 
+  <path id="lib.path" >
+    <fileset dir="../" includes="lib/*.jar"  />
+  </path>
+  
+    
+  <path id="classpath" >
+    <pathelement path="classes"   />
+  </path>
+
+
+  <!-- 使用 jaxb-xjc 處理 XXX.xsd 的設定檔產出相對應的 Object  -->
+  <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask" >
+    <classpath refid="lib.path" />
+  </taskdef>
+
+
+
+
+	
+	
+
+
+
+ 
+
+
+  <!-- compile Java source files -->
+  <target name="compile" description="Compile all Java source files" >
+    
+    <echo message="Compiling the XSD schema To Generate Code ..." />
+    <xjc schema="../XSD/create-marshal.xsd" 
+         package="com.createMarshal.primer.po" 
+         destdir="../src" >
+         
+      <produces dir="src/com/createMarshal/primer/po" includes="**/*.java" />  
+    
+    </xjc>
+    
+  
+  	
+    <echo message="Compiling the java source files..." />
+    <mkdir dir="../classes" />  
+    <javac srcdir="../src/com/createMarshal/primer/po" 
+           destdir="../classes" 
+    	   debug="on"  
+           compiler="javac1.7" 
+           nowarn="true" 
+           includeantruntime="false"
+           verbose="true" >
+      <classpath refid="lib.path" />
+    </javac>
+    
+    <echo message="compile success" />
+
+  </target>
+
+
+
+
+
+
+
+  <!--
+  <target name="javadoc" depends="compile" description="Generates javadoc" >
+    <echo message="Generating javadoc..." />
+    <mkdir dir="docs/api"   />
+    <javadoc sourcepath="${src}" destdir="docs/api" windowtitle="create-marshal (formerly SampleApp3)" useexternalfile="yes" >
+      <fileset dir="${src}" >
+      <include name="**/*.java" />
+      </fileset>
+    </javadoc>
+    <echo message="Generating javadoc success...." />
+  </target>
+  -->
+
+
+
+
+  <target name="run" depends="compile" description="Run the sample app" >
+    <echo message="Running the sample application..." />
+    <java classname="com.createMarshal.Main" fork="true" >
+      <classpath refid="classpath"    />
+    </java>
+    <echo message="run success..." />
+  </target>
+  
+  
+</project>
+
